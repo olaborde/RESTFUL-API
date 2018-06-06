@@ -13,3 +13,43 @@ export const addNewContact = (req, res) => {
         res.json(contact);
     });
 };
+
+export const getContact =(req, res) => {
+  Contact.find({}, (err, contact) => {
+      if(err) {
+        res.render(err);
+      }
+      res.json(contact);
+  });
+};
+
+export const getContactWithID = (req, res) => {
+    Contact.findById(req.params.contactId, (err, contact) => {
+      if(err) {
+        res.render(err);
+      }
+      res.json(contact);
+
+    })
+} 
+
+
+export const updateContact = (req, res) => {
+    Contact.findOneAndUpdate({ _id: req.params.contactId}, req.body, {new: true}, (err, contact) =>{
+      if(err) {
+        res.render(err);
+      }
+      res.json(contact);
+
+    } )
+}
+
+export const deleteContact = (req, res) => {
+    Contact.remove( {_id: req.params.contactId}, (err, contact) => {
+      if(err) {
+        res.render(err);
+      }
+      res.json({message: 'Successfully deleted contact'});
+
+    })
+}
