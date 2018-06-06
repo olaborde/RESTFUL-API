@@ -16,11 +16,11 @@ export const ContactSchema = new Schema ({
       type: String,
     
     },
-    email: {
-      company: String,
+    company: {
+      type: String,
     
     },
-    phonw: {
+    phone: {
       type: Number,
     
     },
